@@ -1,0 +1,33 @@
+allprojects {
+	apply plugin: 'maven-publish'
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	
+	publishing {
+		repositories {
+			mavenLocal()
+		}
+		publications {
+			indietalents (MavenPublication) {
+				from components.java
+				groupId project.group
+				artifactId project.archivesBaseName
+				version project.version
+			}
+		}
+	}
+	
+	group = 'com.indietalents'
+	version = '1.0.0-SNAPSHOT'
+}
+
+apply plugin: 'java'
+
+archivesBaseName = 'App'
+
+dependencies {
+	compile project(':EncryptionService')
+}
