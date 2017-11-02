@@ -12,7 +12,7 @@ import { ProfileComponent } from './profile.component';
 
 @NgModule({
   imports: [
-    CommonModule, HeaderBlockModule, ContentBlockModule, ThemeModule, //ProfileRoutingModule
+    ProfileRoutingModule, CommonModule, HeaderBlockModule, ContentBlockModule, ThemeModule
   ],
   declarations: [ProfileComponent],
   exports: [ProfileComponent]

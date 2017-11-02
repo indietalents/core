@@ -31,6 +31,7 @@ export class MainInfoComponent implements OnInit {
     if (!form.valid) {
       return false;
     }
+    
 
     this.formDataService.setMainInfo(this.info);
 

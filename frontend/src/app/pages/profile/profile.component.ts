@@ -17,13 +17,19 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private service: UserService) { 
+
+      console.log('ProfileComponent loaded!');
+
         //this.router.navigate(['/profile', {id: 1}]);
   }
 
   ngOnInit() {
-    this.user$ = this.route.paramMap
-      .switchMap((params: ParamMap) =>
-        this.service.getUser(+params.get('id')));
+
+    console.log('ProfileComponent init!');
+
+    // this.user$ = this.route.paramMap
+    //   .switchMap((params: ParamMap) =>
+    //     this.service.getUser(+params.get('id')));
   }
 
 }

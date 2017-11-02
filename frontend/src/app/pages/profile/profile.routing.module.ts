@@ -7,14 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const contentBlockRoutes: Routes = [
     {
-      path: 'profile',  // /:id
+      path: '',  // /:id
       component: ProfileComponent,
-      resolve: {
-        user: ProfileResolver
-      },
+      // resolve: {
+      //   user: ProfileResolver
+      // },
       children: [
         {
-          path: '',
+          path: 'main',
           component: MainContentComponent
           //loadChildren: 'app/pages/profile/content-block/posts/posts.module#PostsModule',
         },
@@ -30,13 +30,13 @@ export const contentBlockRoutes: Routes = [
         
       ],
     },
-    { path: '', redirectTo: 'profile', pathMatch: 'full' },  // /:id
-    { path: '**', redirectTo: 'profile' },   // /:id
+    { path: '', redirectTo: '', pathMatch: 'full' },  // /:id
+    { path: '**', redirectTo: '' },   // /:id
   ];
   
   @NgModule({
     imports: [RouterModule.forChild(contentBlockRoutes)],
     exports: [RouterModule],
-    providers: [ProfileResolver]
+    //providers: [ProfileResolver]
   })
   export class ProfileRoutingModule {}

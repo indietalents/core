@@ -1,43 +1,48 @@
-<div class="row">
+<div class="container">
 
-    <div class="col-4">
-        <div class="tab-item" style="background-color: #FFFFFF;; padding: 5px; margin: 5px; border-radius: 5px;">
-        <!-- circular user icon -->
-        <a routerLink="/auth/register/type" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="tab" title="personal">
-              <span class="round-tabs one">
-                  <i class="glyphicon glyphicon-user"></i>
-                  Type
-              </span>
-          </a>
+    <div class="row">
+
+        <div class="col-4">
+            <div class="tab-item" style="background-color: #FFFFFF;; padding: 5px; margin: 5px; border-radius: 5px; text-align: center;">
+                <!-- circular user icon -->
+                <a routerLink="/auth/register/type" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="tab"
+                    title="personal">
+                    <span class="round-tabs one">
+                        <i class="glyphicon glyphicon-user"></i>
+                        Type
+                    </span>
+                </a>
+
+            </div>
 
         </div>
 
-    </div>
+        <div class="col-4">
 
-    <div class="col-4">
+            <!-- circular tasks icon -->
+            <div class="tab-item" style="background-color: #FFFFFF; padding: 5px; margin: 5px; border-radius: 5px; text-align: center;">
+                <a routerLink="/auth/register/subtype" routerLinkActive="active" data-toggle="tab" title="work">
+                    <span class="round-tabs two">
+                        <i class="glyphicon glyphicon-tasks"></i>
+                        Subtype
+                    </span>
+                </a>
+            </div>
 
-        <!-- circular tasks icon -->
-        <div class="tab-item" style="background-color: #FFFFFF; padding: 5px; margin: 5px; border-radius: 5px;">
-            <a routerLink="/auth/register/subtype" routerLinkActive="active" data-toggle="tab" title="work">
-              <span class="round-tabs two">
-                  <i class="glyphicon glyphicon-tasks"></i>
-                  Subtype
-              </span> 
-          </a>
         </div>
 
-    </div>
+        <div class="col-4">
 
-    <div class="col-4">
+            <!-- circular home icon -->
+            <div class="tab-item" style="background-color: #FFFFFF;; padding: 5px; margin: 5px; border-radius: 5px; text-align: center;">
+                <a routerLink="/auth/register/info" routerLinkActive="active" data-toggle="tab" title="address">
+                    <span class="round-tabs three">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Main info
+                    </span>
+                </a>
+            </div>
 
-        <!-- circular home icon -->
-        <div class="tab-item" style="background-color: #FFFFFF;; padding: 5px; margin: 5px; border-radius: 5px;">
-            <a routerLink="/auth/register/info" routerLinkActive="active" data-toggle="tab" title="address">
-              <span class="round-tabs three">
-                  <i class="glyphicon glyphicon-home"></i>
-                  Main info
-              </span>
-          </a>
         </div>
 
     </div>
