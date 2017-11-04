@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 import { MENU_ITEMS } from './pages-menu';
@@ -8,17 +7,18 @@ import { MENU_ITEMS } from './pages-menu';
   template: `
     <ngx-sample-layout>
       <nb-menu [items]="menu"></nb-menu>
-      pages!
       <router-outlet></router-outlet>
     </ngx-sample-layout>
   `,
 })
 export class PagesComponent {
 
-  constructor(private router: Router) {
+  constructor() {
+    console.log('PagesComponent loaded!');
+   }
 
-    router.navigate(['/profile']);
-
+  ngOnInit() {
+    console.log('PagesComponent inited!');
   }
 
   menu = MENU_ITEMS;

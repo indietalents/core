@@ -1,20 +1,20 @@
-import { ProfileRoutingModule } from './profile.routing.module';
-import { ContentBlockRoutingModule } from './content-block/content-block-routing.module';
-import { ContentBlockModule } from './content-block/content-block.module';
-import { ContentBlockComponent } from './content-block/content-block.component';
+import { ProfileRoutingModule } from './profile-routing.module';
 import { ThemeModule } from './../../@theme/theme.module';
-import { HeaderBlockModule } from './header-block/header-block.module';
-import { PostWallComponent } from './post-wall/post-wall.component';
-import { HeaderBlockComponent } from './header-block/header-block.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile.component';
+import { InfoComponent } from './info/info.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   imports: [
-    ProfileRoutingModule, CommonModule, HeaderBlockModule, ContentBlockModule, ThemeModule
+    ProfileRoutingModule,
+    CommonModule,
+    ThemeModule
   ],
-  declarations: [ProfileComponent],
-  exports: [ProfileComponent]
+  declarations: [ProfileComponent,
+    InfoComponent,
+    PostsComponent
+]
 })
 export class ProfileModule { }

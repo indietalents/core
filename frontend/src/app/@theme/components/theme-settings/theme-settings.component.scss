@@ -25,7 +25,7 @@
         color: nb-theme(color-success);
       }
 
-      @include nb-for-theme(cosmic) {
+      @include nb-for-theme(default) {
         &.selected {
           color: nb-theme(link-color);
         }

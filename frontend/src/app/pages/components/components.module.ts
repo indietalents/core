@@ -15,6 +15,6 @@ import { ComponentsRoutingModule, routedComponents } from './components-routing.
   ],
   declarations: [
     ...routedComponents,
-],
+  ],
 })
 export class ComponentsModule { }

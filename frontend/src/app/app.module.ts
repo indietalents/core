@@ -1,7 +1,8 @@
-import { RegistrationRoutingModule } from './auth/registration/registration-routing.module';
-import { PostsComponent } from './pages/profile/content-block/posts/posts.component';
-import { AuthModule } from './auth/auth.module';
-
+/**
+ * @license
+ * Copyright Akveo. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

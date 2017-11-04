@@ -1,4 +1,3 @@
-import { ContentBlockRoutingModule } from './profile/content-block/content-block-routing.module';
 import { ProfileModule } from './profile/profile.module';
 import { NgModule } from '@angular/core';
 
@@ -14,8 +13,8 @@ const PAGES_COMPONENTS = [
 @NgModule({
   imports: [
     PagesRoutingModule,
-    ContentBlockRoutingModule,
     ThemeModule,
+    DashboardModule,
     ProfileModule
   ],
   declarations: [
