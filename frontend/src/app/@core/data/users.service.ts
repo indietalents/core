@@ -1,4 +1,3 @@
-import { User } from './../../shared/models/user.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -31,8 +30,8 @@ export class UserService {
     return Observable.of(this.userArray);
   }
 
-  getUser(id: number): Observable<User> {
-    return Observable.of(this.userArray)
-      .map(users => users.find(user => user.id == id));
+  getUser(): Observable<any> {
+    counter = (counter + 1) % this.userArray.length;
+    return Observable.of(this.userArray[counter]);
   }
 }

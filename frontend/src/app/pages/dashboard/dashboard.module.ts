@@ -1,4 +1,3 @@
-import { ProfileComponent } from './../profile/profile.component';
 import { NgModule } from '@angular/core';
 import { AngularEchartsModule } from 'ngx-echarts';
 
@@ -45,8 +44,6 @@ import { TrafficChartComponent } from './traffic/traffic-chart.component';
     SolarComponent,
     TrafficComponent,
     TrafficChartComponent,
-    ProfileComponent
-
-],
+  ],
 })
 export class DashboardModule { }

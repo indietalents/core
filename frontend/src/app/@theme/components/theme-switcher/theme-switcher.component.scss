@@ -26,19 +26,19 @@
         padding-right: 10px;
       }
 
-      &.cosmic {
-        color: nb-theme(color-fg);
-        padding-left: 10px;
-      }
+      // &.cosmic {
+      //   color: nb-theme(color-fg);
+      //   padding-left: 10px;
+      // }
 
-      @include nb-for-theme(cosmic) {
+      @include nb-for-theme(default) {
         &.light {
           color: nb-theme(color-fg);
         }
 
-        &.cosmic {
-          color: nb-theme(color-white);
-        }
+        // &.cosmic {
+        //   color: nb-theme(color-white);
+        // }
       }
 
       &:active {
