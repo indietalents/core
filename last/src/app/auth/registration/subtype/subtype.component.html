@@ -1,0 +1,70 @@
+<form #typeForm="ngForm" class="editForm" novalidate>
+    <div class="tab-pane">
+        <h4 class="head text-center">{{title}}</h4>
+        <br/>
+
+        <div class="row">
+
+            <div class="col-3">
+                <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                    <div class="card-block">
+                        <h3 class="card-title">Musician</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button uiSref="type" type="button" class="btn btn-primary btn-outline-rounded" (click)="save(musician)"> Choose </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-3">
+                <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                    <div class="card-block">
+                        <h3 class="card-title">Production</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button uiSref="type" type="button" class="btn btn-primary btn-outline-rounded" (click)="save(production)"> Choose </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-3">
+                <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                    <div class="card-block">
+                        <h3 class="card-title">Education</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button uiSref="type" type="button" class="btn btn-primary btn-outline-rounded" (click)="save(education)"> Choose </button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-3">
+                <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                    <div class="card-block">
+                        <h3 class="card-title">Explorer</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button uiSref="type" type="button" class="btn btn-primary btn-outline-rounded" (click)="save(explorer)"> Choose </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>

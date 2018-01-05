@@ -17,7 +17,14 @@ import {
   NbCheckboxModule,
 } from '@nebular/theme';
 
-
+import {
+  FooterComponent,
+  HeaderComponent,
+  SearchInputComponent,
+  ThemeSettingsComponent,
+  ThemeSwitcherComponent,
+  TinyMCEComponent,
+} from './components';
 import { CapitalizePipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
 import {
   OneColumnLayoutComponent,
@@ -45,6 +52,12 @@ const NB_MODULES = [
 ];
 
 const COMPONENTS = [
+  ThemeSwitcherComponent,
+  HeaderComponent,
+  FooterComponent,
+  SearchInputComponent,
+  ThemeSettingsComponent,
+  TinyMCEComponent,
   OneColumnLayoutComponent,
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
@@ -63,7 +76,7 @@ const NB_THEME_PROVIDERS = [
     {
       name: 'default',
     },
-    [ DEFAULT_THEME, COSMIC_THEME ],
+    [ DEFAULT_THEME ],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,

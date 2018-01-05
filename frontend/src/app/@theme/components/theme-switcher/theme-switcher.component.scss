@@ -26,19 +26,10 @@
         padding-right: 10px;
       }
 
-      // &.cosmic {
-      //   color: nb-theme(color-fg);
-      //   padding-left: 10px;
-      // }
-
-      @include nb-for-theme(default) {
+      @include nb-for-theme(light) {
         &.light {
           color: nb-theme(color-fg);
         }
-
-        // &.cosmic {
-        //   color: nb-theme(color-white);
-        // }
       }
 
       &:active {
@@ -83,14 +74,14 @@
 
       box-shadow: 0 0 0.25rem 0 rgba(nb-theme(color-fg), 0.4);
 
-      @include nb-for-theme(cosmic) {
+      @include nb-for-theme(light) {
         @include btn-hero-primary-gradient();
       }
     }
   }
 
   @include media-breakpoint-down(is) {
-    .light, .cosmic {
+    .light {
       display: none;
     }
   }
