@@ -19,7 +19,7 @@ export const appRoutes: Routes = [
       
           { path: 'info',  component: MainInfoComponent/*, canActivate: [WorkflowGuard]*/ },
       
-          { path: '',   redirectTo: 'subtype', pathMatch: 'full' },
+          { path: '',   redirectTo: 'type', pathMatch: 'full' },
       
           { path: '**', component: MainInfoComponent }
     ]

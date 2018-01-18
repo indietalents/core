@@ -38,6 +38,9 @@ export class MainInfoComponent implements OnInit {
     // validate
 
     // call save user 
+    
+
+
 
     this.router.navigate(['/profile'], {relativeTo: this.activatedRoute});
     return true;
