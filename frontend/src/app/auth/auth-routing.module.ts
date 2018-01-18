@@ -17,10 +17,6 @@ export const authRoutes: Routes = [
         path: 'login',
         loadChildren: 'app/auth/registration/registration.module#RegistrationModule',
       },
-      // {
-      //   path: 'register',
-      //   loadChildren: 'app/auth/registration/registration.module#RegistrationModule',
-      // },
       { path: '', redirectTo: 'register', pathMatch: 'full' },
       { path: '**', redirectTo: 'register' },
     ]

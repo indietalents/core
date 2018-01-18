@@ -16,12 +16,10 @@ const routes: Routes = [
         }, 
         {
           path: 'posts',
-          //component: SuperpostsComponent
           loadChildren: '../profile/posts/posts.module#PostsModule'
         },
         {
           path: 'superposts',
-          //component: SuperpostsComponent
           loadChildren: '../profile/superposts/superposts.module#SuperpostsModule'
         }
     ],
