@@ -1,0 +1,25 @@
+<div class="ui teal stackable inverted top fixed menu">
+  <div class="ui container">
+    <div class="header item">
+      <a routerLink="/" href="#"> LOGO</a>
+    </div>
+    <a class="item" routerLink="/profile">  <!-- *ngIf="(user|async)?.uid" -->
+      Profile
+    </a>
+    <a class="item" routerLink="/explore"> <!-- *ngIf="(user|async)?.uid" -->
+      Explore
+    </a>
+    <div class="right menu">
+      <li class="item">
+        <a routerLink="/settings">Settings</a>
+      </li>
+      <a class="item" routerLink="/signout">
+        Sign out
+      </a>
+      <!-- <a class="item" (click)="signout()">
+        Sign Out
+      </a> -->
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
