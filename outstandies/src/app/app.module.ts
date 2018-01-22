@@ -1,3 +1,4 @@
+import { EmptyComponent } from './shared/components/empty/empty.component';
 import { SharedModule } from './shared/shared.module';
 import { routes } from './app.routing';
 import { ProfileComponent } from './profile/profile.component';
@@ -14,12 +15,13 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     MenubarComponent,
+    //EmptyComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    //SharedModule,
+    SharedModule,
     routes,
     SuiModule
   ],

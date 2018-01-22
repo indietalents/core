@@ -10,6 +10,10 @@ const routes: Routes = [
       children: [
         {
           path: '',
+          component: EmptyComponent
+        },
+        {
+          path: '',
           redirectTo: 'posts',
           pathMatch: 'full',
         }, 
