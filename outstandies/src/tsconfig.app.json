@@ -4,7 +4,7 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "paths": {
-      "@shared/*": ["src/app//shared/*"]
+      "@shared/*": ["src/app/shared/*"]
     },
     "module": "es2015",
     "types": []
