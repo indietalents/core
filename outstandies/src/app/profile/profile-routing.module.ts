@@ -8,15 +8,15 @@ const routes: Routes = [
       path: '',
       component: ProfileComponent,
       children: [
-        {
-          path: '',
-          component: EmptyComponent
-        },
-        {
-          path: '',
-          redirectTo: 'posts',
-          pathMatch: 'full',
-        }, 
+        // {
+        //   path: '',
+        //   component: EmptyComponent
+        // },
+        // {
+        //   path: '',
+        //   redirectTo: 'posts',
+        //   pathMatch: 'full',
+        // }, 
         {
           path: 'posts',
           loadChildren: '../profile/posts/posts.module#PostsModule'

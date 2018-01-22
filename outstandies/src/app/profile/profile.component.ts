@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
+  name: string = 'John';
+  surname: string = 'Sticky';
+
   constructor() {
     console.log('ProfileComponent loaded!')
    }

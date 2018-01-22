@@ -1,4 +1,3 @@
-<!-- <nb-card size="large" style="width: 1300px; margin: 0 auto;"> -->
     <div class="ui container">
       <div class="ui three column grid">
           <div class="four wide column">
@@ -18,7 +17,7 @@
           <div class="eight wide column">
             
             <div class="profile-name">
-  
+              {{ name + ' ' + surname }}
             </div>
   
             <div class="profile-types">
@@ -30,12 +29,12 @@
         </div>
       </div>
 
-        <div class="ui container">
-
-            <route-tabset [tabs]="tabs"></route-tabset>
-
+      <div class="ui container">
+        <div class="ui segment">
+          <route-tabset [tabs]="tabs"></route-tabset> 
         </div>
+      </div>
+
   
   
-    <!-- <nb-route-tabset [tabs]="tabs"></nb-route-tabset> -->
-  <!-- </nb-card> -->
+    

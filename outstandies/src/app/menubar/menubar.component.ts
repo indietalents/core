@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-menubar',
+  selector: 'menubar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.css']
 })

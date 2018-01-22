@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { RouteTabsetModule } from '../shared/components/route-tabset/route-tabset.module';
 import { TabsetModule } from './../shared/components/tabset/tabset.module';
 import { SuiTabsModule } from 'ng2-semantic-ui/dist/public';
@@ -15,7 +14,6 @@ import { ProfileComponent } from './profile.component';
     SharedModule,
     SuiTabsModule,
     RouteTabsetModule,
-    RouterModule
   ],
   //exports: [SharedModule],
   declarations: [ProfileComponent]

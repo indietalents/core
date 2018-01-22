@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
  *    }
  *  ];
  *
- *  <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+ *  <route-tabset [tabs]="tabs"></route-tabset>
  * ```
  *
  * @styles
