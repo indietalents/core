@@ -12,6 +12,9 @@ public interface UserDomainRepository extends CrudRepository<UserDomain, Long> {
 
     @Query("SELECT u FROM UserDomain u where u.email = :email")
     UserDomain getUserByEmail(@Param("email") String email);
+    
+    @Query("SELECT u FROM UserDomain u where u.id = :id")
+    UserDomain getUserById(@Param("id") Long id);
 
     @Modifying
     @Transactional

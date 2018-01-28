@@ -14,22 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class UserRestController {
 
-    @Value("${jwt.header}")
-    private String tokenHeader;
-
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
-    	System.out.println("UserRestController.getAuthenticatedUser()");
-        String token = request.getHeader(tokenHeader).substring(7);
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        return user;
-    }
+//    @Value("${jwt.header}")
+//    private String tokenHeader;
+//
+//    @Autowired
+//    private JwtTokenUtil jwtTokenUtil;
+//
+//    @Autowired
+//    private UserDetailsService userDetailsService;
+//
+//    @RequestMapping(value = "user", method = RequestMethod.GET)
+//    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+//    	System.out.println("UserRestController.getAuthenticatedUser()");
+//        String token = request.getHeader(tokenHeader).substring(7);
+//        String username = jwtTokenUtil.getUsernameFromToken(token);
+//        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+//        return user;
+//    }
 
 }

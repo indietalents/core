@@ -6,6 +6,8 @@ import com.outstandies.core.user.model.User;
 public interface UserService {
 
     User getUserByEmail(String email);
+    
+    User getUserById(Long userId);
 
     void addUser(JsonNode payloadNode);
 

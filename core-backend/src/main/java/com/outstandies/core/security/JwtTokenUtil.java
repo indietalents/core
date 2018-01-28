@@ -105,15 +105,16 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String generateToken(UserDetails userDetails, Device device) {
+    	System.out.println("JwtTokenUtil.generateToken()");
         Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername(), generateAudience(device));
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {
-    	System.out.println("JwtTokenUtil.doGenerateToken()");
+    	
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
-
+        System.out.println("JwtTokenUtil.doGenerateToken()");
         System.out.println("doGenerateToken " + createdDate);
 
         return Jwts.builder()

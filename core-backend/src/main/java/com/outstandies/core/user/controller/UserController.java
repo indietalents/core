@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,13 +19,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/services/users/get")
+    @GetMapping("/api/user")
     public User getUser(final @RequestParam(value = "email", defaultValue = "default@mail.com") String email) {
         return userService.getUserByEmail(email);
     }
 
-    @RequestMapping(path = "/services/users/add", method = RequestMethod.POST)
+    @PostMapping(path = "/api/users/add")
     public String addUser(final @RequestBody JsonNode requestBody) {
+    	System.out.println("add user");
         userService.addUser(requestBody);
         return "{\"message\":\"User successfully added.\"}";
     }
@@ -38,5 +42,15 @@ public class UserController {
         userService.deleteUser(userId);
         return "{\"message\":\"User successfully deleted.\"}";
     }
+    
+//    @GetMapping("/api/user/{id}")
+//    public User getUser(final @PathVariable long id) {
+//        return userService.getUserById(id);
+//    }
+//    
+//    @PostMapping("/api/user")
+//    public User createUser(final @PathVariable long id) {
+//        return userService.getUserById(id);
+//    }
 
 }

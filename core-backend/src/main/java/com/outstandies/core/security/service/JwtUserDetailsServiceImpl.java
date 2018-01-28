@@ -9,9 +9,6 @@ import com.outstandies.core.model.security.User;
 import com.outstandies.core.security.JwtUserFactory;
 import com.outstandies.core.security.repository.UserRepository;
 
-/**
- * Created by stephan on 20.03.16.
- */
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
