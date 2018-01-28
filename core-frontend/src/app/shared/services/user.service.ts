@@ -11,7 +11,7 @@ export class UserService {
     }
 
     getById(id: number) {
-        return this.http.get('/api/users/' + id);
+        return this.http.get('/api/user/' + id);
     }
 
     create(user: User) {

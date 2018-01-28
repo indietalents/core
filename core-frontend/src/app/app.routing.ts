@@ -1,3 +1,4 @@
+import { AuthGuard } from './shared/guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -12,6 +13,7 @@ export const appRoutes: Routes = [
         children: [
             {path: '', component: MenubarComponent, children: [
                 {
+                    canActivate: [AuthGuard],
                     path: 'profile',
                     loadChildren: 'app/profile/profile.module#ProfileModule'
                 },

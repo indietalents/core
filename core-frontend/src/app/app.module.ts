@@ -38,7 +38,7 @@ import { AppComponent } from './app.component';
     DashboardModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } 
+      //{ enableTracing: true } 
     )
   ],
   providers: [
