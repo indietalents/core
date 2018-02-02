@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
 import { JwtHelper } from 'angular2-jwt'
 import 'rxjs/add/operator/map'
+import { tap } from 'rxjs/operators/tap';
+import { catchError } from 'rxjs/operators/catchError';
 
 
 @Injectable()
@@ -22,22 +24,96 @@ export class AuthService {
 
     login(username: string, password: string) {
         console.log("AuthService.login()");
-        return this.http.post<any>('http://localhost:8080/auth', { username: "user", password: "password" })
-            .map(res => {
-                debugger;
-                console.log('res: ' + res);
-                // login successful if there's a jwt token in the response
-                if (res && res.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(res));
+        return this.http.post<any>('http://localhost:8080/auth', { username: username, password: password })
+            .map((res: Response) => {
+                if (res) {
+                    if (res.status === 201) {
+                        return [{ status: res.status, json: res }]
+                    }
+                    else if (res.status === 200) {
+                        return [{ status: res.status, json: res }]
+                    }
                 }
-
                 return res;
+            })
+            .catch((error: any) => {
+                console.log("error.status: " + error.status);
+                if (error.status < 400 ||  error.status === 500) {
+                    return Observable.throw(new Error(error.status));
+                } else if (error.status === 401) {
+                    console.log("Authorize error!");
+                }
             });
+ 
+
+
+            // .map((res: Response) => {
+            //     if (res) {
+            //         if (res.status === 201) {
+            //             return [{ status: res.status, json: res }]
+            //         }
+            //         else if (res.status === 200) {
+            //             return [{ status: res.status, json: res }]
+            //         }
+            //     }
+            // })
+            // .catch((error: any) => {
+            //     if (error.status < 400 ||  error.status === 500) {
+            //         return Observable.throw(new Error(error.status));
+            //     }
+            // })
+            // .subscribe(res => {
+            //         debugger;
+            //         console.log(res);
+            //     },
+            //     err => {
+            //         debugger;
+            //         console.log(err)
+            //     } 
+            // );
+
+            // .map(res => {
+            //     debugger;
+            //     console.log('res: ' + res);
+            //     // login successful if there's a jwt token in the response
+            //     if (res && res.token) {
+            //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+            //         localStorage.setItem('currentUser', JSON.stringify(res));
+            //     }
+
+            //     return res;
+            // });
     }
+
+    // private handleError (error: Response | any) {
+    //     // In a real world app, you might use a remote logging infrastructure
+    //     let errMsg: string;
+    //     if (error instanceof Response) {
+    //       const body = error.json() || '';
+    //       const err = body.error || JSON.stringify(body);
+    //       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    //     } else {
+    //       errMsg = error.message ? error.message : error.toString();
+    //     }
+    //     console.error(errMsg);
+    //     return Observable.throw(errMsg);
+    //   }
 
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+    }
+
+    private handleError(operation: String) {
+        return (err: any) => {
+            let errMsg = `error in ${operation}() retrieving `; // ${this.url}
+            console.log(`${errMsg}:`, err)
+            if(err instanceof HttpErrorResponse) {
+                // you could extract more info about the error if you want, e.g.:
+                console.log(`status: ${err.status}, ${err.statusText}`);
+                // errMsg = ...
+            }
+            return Observable.throw(errMsg);
+        }
     }
 }
