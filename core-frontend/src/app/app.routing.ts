@@ -13,7 +13,7 @@ export const appRoutes: Routes = [
         children: [
             {path: '', component: MenubarComponent, children: [
                 {
-                    canActivate: [AuthGuard],
+                    //canActivate: [AuthGuard],
                     path: 'profile',
                     loadChildren: 'app/profile/profile.module#ProfileModule'
                 },

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-superposts',
+  selector: 'superposts',
   templateUrl: './superposts.component.html',
   styleUrls: ['./superposts.component.css']
 })

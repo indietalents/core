@@ -10,6 +10,7 @@ import { PostsComponent } from './posts.component';
     RouterModule.forChild([
       {path: '', component: PostsComponent, pathMatch: 'full'}
     ]),
+    
   ],
   declarations: [PostsComponent]
 })

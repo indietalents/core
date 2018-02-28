@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 
 import { UserService } from './../shared/services/index';
 import { FormGroup } from '@angular/forms/src/model';
-import { FormBuilder } from '@angular/forms/src/form_builder';
-import { Validators } from '@angular/forms/src/validators';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'register',
@@ -40,6 +39,7 @@ export class RegisterComponent {
     get password() { return this.registerForm.get('password'); }
 
     onSubmit() {
+        console.log("onSubmit()");
         if (this.registerForm.valid) {
             this.register();
         }

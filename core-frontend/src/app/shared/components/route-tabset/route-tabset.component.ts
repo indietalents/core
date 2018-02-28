@@ -41,15 +41,15 @@ import { Router } from '@angular/router';
   selector: 'route-tabset',
   styleUrls: ['./route-tabset.component.scss'],
   template: `
-    <ul>
-      <li *ngFor="let tab of tabs"
+    <div class="ui pointing secondary menu">
+      <a class="item" href *ngFor="let tab of tabs"
           (click)="$event.preventDefault(); selectTab(tab)"
           routerLink="{{tab.route}}"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">
-        <a href>{{tab.title}}</a>
-      </li>
-    </ul>
+        {{tab.title}}
+      </a>
+    </div>
     <router-outlet></router-outlet>
   `,
 })
