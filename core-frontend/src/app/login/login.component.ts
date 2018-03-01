@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from './../shared/services/index';
+import { HttpHeaders } from '@angular/common/http/src/headers';
 
 @Component({
     moduleId: module.id,
     templateUrl: 'login.component.html'
 })
-
 export class LoginComponent implements OnInit {
+
+    
     model: any = {};
     loading = false;
     returnUrl: string;

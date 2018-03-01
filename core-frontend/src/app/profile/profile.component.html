@@ -29,11 +29,14 @@
         </div>
       </div>
 
-      <div class="ui container">
-        <div class="ui segment">
-          <route-tabset [tabs]="tabs"></route-tabset> 
+      <div class="ui two grid">
+              <div class="ui segment profile-tabs-block column" style="flex: 1; min-width: 500px;">
+                  <route-tabset [tabs]="tabs"></route-tabset> 
+              </div>
+              <div class="ui segment profile-right-block column" style="flex: 0 0 250px;">
+
+              </div>
         </div>
-      </div>
 
   
   

@@ -14,7 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SuiModule } from 'ng2-semantic-ui';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,6 +29,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpModule,
     SharedModule,

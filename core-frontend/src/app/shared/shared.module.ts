@@ -1,3 +1,5 @@
+import { SuperPostComponent } from './components/super-post/super-post.component'
+import { PostComponent } from './components/post/post.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { EmptyComponent } from './components/empty/empty.component';
@@ -12,7 +14,7 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     RouterModule,
   ],
-  declarations: [EmptyComponent],
-  exports: [EmptyComponent, CommonModule, FormsModule, RouterModule, HttpClientModule, HttpModule]
+  declarations: [EmptyComponent, PostComponent, SuperPostComponent],
+  exports: [EmptyComponent, PostComponent, SuperPostComponent, CommonModule, FormsModule, RouterModule, HttpClientModule, HttpModule]
 })
 export class SharedModule { }
