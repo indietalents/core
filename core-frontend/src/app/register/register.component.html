@@ -4,50 +4,31 @@
     <div class="column">
 
       <h2>Register</h2>
-      <form [formGroup]="registerForm" class="ui large form" name="form" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="registerForm" class="ui large form" (ngSubmit)="onSubmit()" novalidate>
 
-        <div class="ui error message">
-          <ul class="list">
-            <li>Please enter a value</li>
-            <li>Please select a dropdown value</li>
-            <li>Please check the checkbox</li>
-          </ul>
-        </div>
+        <!-- error group block -->
+        <!-- <msg-group></msg-group> -->
+
+        <!-- <ext-input></ext-input> -->
 
 
-        <div class="field" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <div class="field" [class.error] = "isControlInvalid('username')">
+
           <label for="username">Username</label>
           <input type="text" class="form-control" formControlName="username" name="username" required />
-
-          <!-- name error block -->
-          <div *ngIf="name.invalid && name.touched">
-            <div *ngIf="name.errors?.required">
-                <div class="ui error message">
-                    <ul class="list">
-                      <li> name field can't be blank</li>
-                      <li>Please select a dropdown value</li>
-                      <li>Please check the checkbox</li>
-                    </ul>
-                  </div>
-            </div>
-          </div>
+          <div class="ui basic red pointing prompt label transition visible error" *ngIf="isControlInvalid('username')">Please enter your name</div>
 
         </div>
 
-        <div class="field" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <div class="field" [class.error] = "isControlInvalid('password')">
           <label for="password">Password</label>
           <input type="password" class="form-control" formControlName="password" name="password" required />
-
-          <!-- name error block -->
-          <div *ngIf="password.invalid && password.touched" class="col-sm-3 text-danger">
-            <div *ngIf="password.errors?.required">
-              password field can't be blank
-            </div>
-          </div>
+          <div class="ui basic red pointing prompt label transition visible error" *ngIf="isControlInvalid('password')">Please enter your password</div>
 
         </div>
+
         <div>
-          <button [disabled]="loginForm.pristine" [disabled]="loading" type="submit" class="ui button">Register</button>
+          <button [disabled]="!registerForm.valid" [disabled]="loading" type="submit" class="ui button">Register</button>
           <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
           />
           <a [routerLink]="['/login']" class="ui button">Cancel</a>

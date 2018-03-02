@@ -1,3 +1,5 @@
+import { ExtInputComponent } from './components/ext-input/ext-input.component';
+import { MsgGroupComponent } from './components/msg-group/msg-group.component';
 import { SuperPostComponent } from './components/super-post/super-post.component'
 import { PostComponent } from './components/post/post.component';
 import { RouterModule } from '@angular/router';
@@ -14,7 +16,25 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     RouterModule,
   ],
-  declarations: [EmptyComponent, PostComponent, SuperPostComponent],
-  exports: [EmptyComponent, PostComponent, SuperPostComponent, CommonModule, FormsModule, RouterModule, HttpClientModule, HttpModule]
+
+  declarations: [
+    EmptyComponent, 
+    PostComponent, 
+    SuperPostComponent, 
+    MsgGroupComponent,
+    ExtInputComponent
+  ],
+
+  exports: [
+    EmptyComponent, 
+    PostComponent, 
+    SuperPostComponent, 
+    MsgGroupComponent, 
+    ExtInputComponent,
+    CommonModule, 
+    FormsModule, 
+    RouterModule, 
+    HttpClientModule, 
+    HttpModule]
 })
 export class SharedModule { }

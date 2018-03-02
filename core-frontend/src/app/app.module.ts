@@ -1,3 +1,6 @@
+import { MsgGroupComponent } from './shared/components/msg-group/msg-group.component';
+import { JwtService } from './shared/services/jwt.service';
+import { ApiService } from './shared/services/api/api.service';
 import { fakeBackendProvider } from './shared/helpers/fake-backend';
 import { AuthService } from './shared/services/auth.service';
 import { JwtInterceptor } from './shared/helpers/jwt-intercptor';
@@ -24,7 +27,7 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MenubarComponent,
+    MenubarComponent
     //EmptyComponent
   ],
   imports: [
@@ -45,6 +48,8 @@ import { AppComponent } from './app.component';
   providers: [
     AuthGuard,
     AuthService,
+    ApiService,
+    JwtService,
     UserService,
     {
         provide: HTTP_INTERCEPTORS,

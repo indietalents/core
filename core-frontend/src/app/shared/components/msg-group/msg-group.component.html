@@ -1,0 +1,11 @@
+<div class="ui message" [ngClass]="getType()">
+    <i *ngIf="isCloseble" class="close icon"></i>
+    <div class="header">
+      {{ header }}
+    </div>
+    <ul class="list ">
+        <li *ngFor="let message of messages">
+            {{ message }}
+        </li>
+    </ul>
+</div>

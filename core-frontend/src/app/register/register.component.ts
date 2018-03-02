@@ -1,7 +1,8 @@
+import { AuthService } from './../shared/services/auth.service';
+import { CustomValidators } from './../shared/services/form/custom-validators';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from './../shared/services/index';
 import { FormGroup } from '@angular/forms/src/model';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -20,40 +21,61 @@ export class RegisterComponent {
 
     constructor(
         private router: Router,
-        private userService: UserService,
+        private authService: AuthService,
         private fb: FormBuilder) { 
         }
 
     ngOnInit() {
+        this.buildForm();  
+        //this.onChanges(); 
+        debugger;
+    }
 
+    public buildForm() {
         this.registerForm = this.fb.group({
-            name: ['', [Validators.required, 
+            username: ['', [Validators.required, 
                 Validators.minLength(3)]],
             password: ['', [Validators.required, 
-                Validators.minLength(3)]]
+                Validators.minLength(3)]],
+            // username: ['', [Validators.required, 
+            //     CustomValidators.validateCharacters]],
         });
     }
+
+    isControlInvalid(controlName: string): boolean {
+        const control = this.registerForm.controls[controlName];
+        const result = control.invalid && control.touched;
+        return result;
+    }
     
-    get name() { return this.registerForm.get('email'); }
+    get username() { return this.registerForm.get('username'); }
     
     get password() { return this.registerForm.get('password'); }
 
     onSubmit() {
         console.log("onSubmit()");
-        if (this.registerForm.valid) {
+        const controls = this.registerForm.controls;
+        if (this.registerForm.invalid) {
+            Object.keys(controls)
+                .forEach(controlName => controls[controlName].markAsTouched());
+            return;
+        } else {
             this.register();
         }
+
     }
 
     register() {
         this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
-                data => {
-                    this.router.navigate(['/']);
-                },
-                error => {
-                    this.loading = false;
-                });
+        console.log(this.model);
+        this.authService.login(this.model)
+            // .subscribe(
+            //     data => {
+            //         this.router.navigate(['/']);
+            //     },
+            //     error => {
+            //         this.loading = false;
+            //         // show message
+            //     });
     }
 }

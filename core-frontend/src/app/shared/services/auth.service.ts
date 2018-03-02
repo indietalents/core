@@ -5,7 +5,7 @@ import { JwtHelper } from 'angular2-jwt'
 import 'rxjs/add/operator/map'
 import { tap } from 'rxjs/operators/tap';
 import { catchError } from 'rxjs/operators/catchError';
-
+declare var moment: any;
 
 @Injectable()
 export class AuthService {
@@ -22,21 +22,23 @@ export class AuthService {
         return token && !this.jwtHelper.isTokenExpired(token);
     }
 
-    login(username: string, password: string) {
+    private setSession(authResult) {
+        const expiresAt = moment().add(authResult.expiresIn, 'second');
+
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+    }    
+
+    login(model) {
         console.log("AuthService.login()");
-        return this.http.post<any>('http://localhost:8080/auth', { username: username, password: password })
-            .map((res: Response) => {
-                if (res) {
-                    if (res.status === 201) {
-                        return [{ status: res.status, json: res }]
-                    }
-                    else if (res.status === 200) {
-                        return [{ status: res.status, json: res }]
-                    }
-                }
-                return res;
-            })
-            .catch((error: any) => {
+        return this.http.post<any>('http://localhost:8080/auth', { username: model.username, password: model.password })
+        .map(res => { debugger; res.json(); })
+        .subscribe(
+            (data) => {
+              //let token = res.token;
+              return true;
+            },
+            (error) => {
                 console.log("error.status: " + error.status);
                 if (error.status < 400 ||  error.status === 500) {
                     return Observable.throw(new Error(error.status));
@@ -44,6 +46,28 @@ export class AuthService {
                     console.log("Authorize error!");
                 }
             });
+            // .map((res: Response) => {
+            //     debugger;
+            //     if (res) {
+            //         if (res.status === 201) {
+            //             return [{ status: res.status, json: res }]
+            //         }
+            //         else if (res.status === 200) {
+            //             // save token
+            //             let token = res.json() && res.json().token;
+            //             return [{ status: res.status, json: res }]
+            //         }
+            //     }
+            //     return res;
+            // })
+            // .catch((error: any) => {
+            //     console.log("error.status: " + error.status);
+            //     if (error.status < 400 ||  error.status === 500) {
+            //         return Observable.throw(new Error(error.status));
+            //     } else if (error.status === 401) {
+            //         console.log("Authorize error!");
+            //     }
+            // });
  
 
 
