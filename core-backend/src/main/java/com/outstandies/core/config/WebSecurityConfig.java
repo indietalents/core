@@ -1,107 +1,87 @@
 package com.outstandies.core.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.outstandies.core.security.CorsFilter;
-import com.outstandies.core.security.JwtAuthenticationEntryPoint;
-import com.outstandies.core.security.JwtAuthenticationTokenFilter;
+import com.outstandies.core.security.AuthenticationFailureHandler;
+import com.outstandies.core.security.AuthenticationSuccessHandler;
+import com.outstandies.core.security.LogoutSuccess;
+import com.outstandies.core.security.RestAuthenticationEntryPoint;
+import com.outstandies.core.security.TokenAuthenticationFilter;
+import com.outstandies.core.user.services.impl.CustomUserDetailsService;
 
 
 @Configuration
-@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+  @Value("${jwt.cookie}")
+  private String TOKEN_COOKIE;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+  @Bean
+  public TokenAuthenticationFilter jwtAuthenticationTokenFilter() throws Exception {
+    return new TokenAuthenticationFilter();
+  }
 
-    @Bean
-    public CorsFilter corsFilter() throws Exception {
-        return new CorsFilter();
-    }
-    
-    @Autowired
-    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-    	System.out.println("WebSecurityConfig.configureAuthentication()");
-        authenticationManagerBuilder
-                .userDetailsService(this.userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+  @Bean
+  @Override  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-    	System.out.println("WebSecurityConfig.passwordEncoder()");
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-    	System.out.println("JwtAuthenticationTokenFilter.authenticationTokenFilterBean()");
-        return new JwtAuthenticationTokenFilter();
-    }
+  @Autowired
+  private CustomUserDetailsService jwtUserDetailsService;
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
-    }
-    
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-    	System.out.println("JwtAuthenticationTokenFilter.configure()");
-        httpSecurity
-                // we don't need CSRF because our token is invulnerable
-                .csrf().disable()
+  @Autowired
+  private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+  @Autowired
+  private LogoutSuccess logoutSuccess;
 
-                // don't create session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder)
+      throws Exception {
+    authenticationManagerBuilder.userDetailsService(jwtUserDetailsService)
+        .passwordEncoder(passwordEncoder());
 
-                .authorizeRequests()
+  }
 
-                // allow anonymous resource requests
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/",
-                        "/*.html",
-                        "/favicon.ico",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).permitAll()
+  @Autowired
+  private AuthenticationSuccessHandler authenticationSuccessHandler;
 
-                // Un-secure H2 Database
-                .antMatchers("/h2-console/**/**").permitAll()
+  @Autowired
+  private AuthenticationFailureHandler authenticationFailureHandler;
 
-                .antMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated();
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+	  System.out.println("configure()");
+    http.csrf().ignoringAntMatchers("/api/login", "/api/signup")
+        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
+        .addFilterBefore(jwtAuthenticationTokenFilter(), BasicAuthenticationFilter.class)
+        .authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/api/login")
+        .successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler)
+        .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/api/logout"))
+        .logoutSuccessHandler(logoutSuccess).deleteCookies(TOKEN_COOKIE);
 
-        // Custom JWT based security filter
-        httpSecurity
-        		.addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+  }
 
-        // disable page caching
-        httpSecurity
-                .headers()
-                .frameOptions().sameOrigin()  // required to set for H2 else H2 Console will be blank.
-                .cacheControl();
-    }
 }

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: SECURITY
 Implementation-Version: 0.2.0
-Built-By: Lenovo
+Built-By: Zinchanka_U
 Implementation-Vendor-Id: com.outstandies
-Build-Jdk: 1.8.0_111
+Build-Jdk: 1.8.0_151
 Implementation-URL: http://projects.spring.io/spring-boot/core-backend
  /
 Created-By: Maven Integration for Eclipse
